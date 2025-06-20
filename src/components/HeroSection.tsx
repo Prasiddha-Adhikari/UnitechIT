@@ -57,11 +57,11 @@ export default function HeroSection() {
 
 <div className="flex justify-center md:justify-start gap-8 mb-6 text-lg font-medium text-green-600">
   <div className="flex items-center gap-2">
-    <Image src="/icons/check-mark.png" alt="check" width={20} height={20} />
+    <Image src="/icons/check-mark.png" alt="check" width={20} height={20} unoptimized/>
     <span>Get Certified</span>
   </div>
   <div className="flex items-center gap-2">
-    <Image src="/icons/check-mark.png" alt="check" width={20} height={20} />
+    <Image src="/icons/check-mark.png" alt="check" width={20} height={20} unoptimized />
     <span>Gain Job-ready Skills</span>
   </div>
 </div>
@@ -86,6 +86,7 @@ export default function HeroSection() {
               fill
               className="object-contain"
               priority
+              unoptimized
             />
           </div>
 

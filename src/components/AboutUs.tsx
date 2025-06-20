@@ -13,6 +13,7 @@ export default function AboutUs() {
               alt="Large Square"
               fill
               style={{ objectFit: "cover" }}
+              unoptimized
             />
           </div>
           <div className="w-44 h-44 relative rounded-lg overflow-hidden shadow-md ml-auto">
@@ -21,6 +22,7 @@ export default function AboutUs() {
               alt="Small Square"
               fill
               style={{ objectFit: "cover" }}
+              unoptimized
             />
           </div>
         </div>
@@ -34,6 +36,7 @@ export default function AboutUs() {
               fill
               style={{ objectFit: "cover" }}
               className="h-full"
+              unoptimized
             />
           </div>
         </div>
@@ -76,7 +79,7 @@ export default function AboutUs() {
       {/* Left Column: Heading */}
       <div className="text-center md:text-left md:w-1/2">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
-          Learn from industry experts and get certified by the market's leading
+          Learn from industry experts and get certified by the market`&apos`s leading
         </h2>
       </div>
 

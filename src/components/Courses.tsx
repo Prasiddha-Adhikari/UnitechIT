@@ -26,7 +26,7 @@ const categories: Category[] = [
     title: "Computer Programming",
     courses: [
       { name: "ASP .NET Core Training in Nepal", imageSrc: "/images/video-editing.jpg" },
-      { name: "Advanced React.js Training in Nepal", imageSrc: "/images/course2.jpg" },
+      { name: "Advanced React.js Training in Nepal", imageSrc: "/images/video-editing.jpg" },
       { name: "Python with Django Training in Nepal", imageSrc: "/images/course3.jpg" },
       { name: "MERN Stack Training in Kathmandu, Nepal", imageSrc: "/images/course4.jpg" },
     ],
@@ -84,6 +84,7 @@ export default function Courses() {
                       style={{ objectFit: "cover" }}
                       sizes="224px"
                       priority={i === 0 && idx === 0}
+                      unoptimized
                     />
                   </div>
                   <div className="py-4 px-3 text-center text-black font-semibold text-lg">

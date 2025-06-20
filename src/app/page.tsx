@@ -3,7 +3,7 @@ import Courses from "@/components/Courses";
 import ExploreCourses from "@/components/ExploreCourses";
 import GrabTheBest from "@/components/GrabTheBest";
 import HeroSection from "@/components/HeroSection";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       <Courses />
       <GrabTheBest />
       <AboutUs />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 }

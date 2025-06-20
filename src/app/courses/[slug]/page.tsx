@@ -1,24 +1,40 @@
-type PageProps = {
-  params: { slug: string };
+import CoursePageClient from "./CoursesPageClient"; // adjust path
+
+type Props = {
+  params: Promise<{
+    slug: string;
+  }>;
 };
 
-// You can reuse slugify or create a "deslugify" function to show nice titles:
-function deslugify(slug: string) {
-  return slug
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase()); // Capitalize first letter of each word
+function slugify(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .trim();
 }
 
-export default function CoursePage({ params }: PageProps) {
-  const title = deslugify(params.slug);
+const allCourses = [
+  "ASP .NET Core Training in Nepal",
+  "Advanced React.js Training in Nepal",
+  "Python with Django Training in Nepal",
+  "MERN Stack Training in Kathmandu, Nepal",
+  "Video Editing Training in Nepal",
+  "UI/UX Design Training in Nepal",
+  "Web Design Training in Nepal",
+  "Graphic Design Training in Nepal",
+  "Digital Marketing Training in Nepal",
+  "DevOps Engineering Training in Nepal",
+];
 
-  // You can fetch more data here if you want using the slug
-  // For now, just show the course title:
-  return (
-    <main className="max-w-4xl mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-4">{title}</h1>
-      <p>This is the course detail page for <strong>{title}</strong>.</p>
-      {/* Add more course details here */}
-    </main>
-  );
+export async function generateStaticParams() {
+  return allCourses.map((name) => ({
+    slug: slugify(name),
+  }));
+}
+
+export default async function Page({ params }: Props) {
+  const awaitedParams = await params;
+  const slug = awaitedParams.slug;
+  return <CoursePageClient slug={slug} />;
 }

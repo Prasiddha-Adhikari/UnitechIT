@@ -13,6 +13,7 @@ export default function GrabTheBest() {
               fill
               className="object-cover"
               priority
+              unoptimized
             />
           </div>
 

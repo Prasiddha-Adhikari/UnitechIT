@@ -32,11 +32,11 @@ export default function ExploreCourses() {
         </div>
 
         {/* Grid with 5 fixed columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 justify-items-center">
           {courses.map(({ name, imageSrc }, i) => (
             <article
               key={i}
-              className="w-56 bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg transition flex flex-col items-center"
+              className="w-52 bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg transition flex flex-col items-center"
             >
               <div className="w-full h-36 rounded-t-lg overflow-hidden bg-gray-200 relative">
                 <Image
@@ -44,8 +44,9 @@ export default function ExploreCourses() {
                   alt={name}
                   fill
                   style={{ objectFit: "cover" }}
-                  sizes="224px"
+                  sizes="200px"
                   priority={i === 0}
+                  unoptimized
                 />
               </div>
               <div className="py-4 px-2 text-center text-black font-semibold text-lg">

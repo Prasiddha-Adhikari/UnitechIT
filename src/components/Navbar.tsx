@@ -2,30 +2,30 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownClicked, setDropdownClicked] = useState(false);
-
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
     { name: "All Courses", dropdown: true },
-    { name: "Success Story" },
-    { name: "Contact" },
-    { name: "Career" },
-    { name: "Blog" },
+    { name: "Success Story", href: "/success-story" },
+    { name: "Contact", href: "/contact" },
+    { name: "Career", href: "/career" },
+    { name: "Blog", href: "/blog" },
   ];
 
   const allCoursesDropdown = [
-    { name: "Web Development", href: "#" },
-    { name: "Data Science", href: "#" },
-    { name: "Design", href: "#" },
-    { name: "Marketing", href: "#" },
+    { name: "Web Development", href: "/courses/web-development" },
+    { name: "Data Science", href: "/courses/data-science" },
+    { name: "Design", href: "/courses/design" },
+    { name: "Marketing", href: "/courses/marketing" },
   ];
 
-  // Close dropdown if clicked outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -40,16 +40,14 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Handle mouse enter only if dropdown not clicked
   const handleMouseEnter = () => {
     if (!dropdownClicked) setDropdownOpen(true);
   };
-  // Handle mouse leave only if dropdown not clicked
+
   const handleMouseLeave = () => {
     if (!dropdownClicked) setDropdownOpen(false);
   };
 
-  // Handle click toggling dropdown state and lock it open/close
   const handleDropdownClick = () => {
     setDropdownClicked((prev) => !prev);
     setDropdownOpen((prev) => !prev);
@@ -59,7 +57,17 @@ export default function Navbar() {
     <nav className="bg-white py-4 shadow-md">
       <div className="mx-auto max-w-7xl px-6 flex items-center justify-between relative">
         {/* Logo */}
-        <div className="text-xl font-bold text-blue-500">Unitech IT Solution</div>
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/images/logo.png"
+            alt="Unitech IT Logo"
+            width={40}
+            height={40}
+            priority
+            unoptimized
+          />
+          <span className="text-xl font-bold text-blue-500">Unitech IT Solution</span>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
@@ -93,31 +101,34 @@ export default function Navbar() {
                 {dropdownOpen && (
                   <div className="absolute top-full left-0 mt-2 w-52 bg-white border border-gray-200 rounded-md shadow-lg z-50">
                     {allCoursesDropdown.map(({ name, href }, idx) => (
-                      <a
+                      <Link
                         key={idx}
                         href={href}
                         className="block px-4 py-2 text-gray-700 hover:bg-orange-100 hover:text-orange-600 transition"
                       >
                         {name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
               </div>
             ) : (
-              <a
+              <Link
                 key={i}
-                href="#"
+                href={item.href!}
                 className="text-gray-700 hover:text-orange-500 transition"
               >
                 {item.name}
-              </a>
+              </Link>
             )
           )}
 
-          <button className="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-orange-600 transition">
+          <Link
+            href="/inquiry"
+            className="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-orange-600 transition"
+          >
             Inquiry
-          </button>
+          </Link>
         </div>
 
         {/* Mobile menu toggle */}
@@ -154,13 +165,13 @@ export default function Navbar() {
             {dropdownOpen && (
               <div className="flex flex-col pl-5 mt-2 space-y-1">
                 {allCoursesDropdown.map(({ name, href }, idx) => (
-                  <a
+                  <Link
                     key={idx}
                     href={href}
                     className="text-gray-600 hover:text-orange-500 transition"
                   >
                     {name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             )}
@@ -170,18 +181,21 @@ export default function Navbar() {
           {navItems
             .filter((item) => !item.dropdown)
             .map((item, i) => (
-              <a
+              <Link
                 key={i}
-                href="#"
+                href={item.href!}
                 className="block mt-3 text-gray-700 hover:text-orange-500 transition"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
 
-          <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition w-full text-left">
+          <Link
+            href="/inquiry"
+            className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition w-full text-left"
+          >
             Inquiry
-          </button>
+          </Link>
         </div>
       )}
     </nav>
